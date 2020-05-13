@@ -1,4 +1,5 @@
-import 'package:absences/pages/materials/MaterialCreate.dart';
+import 'package:absences/pages/MaterialCreate.dart';
+import 'package:absences/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,8 @@ class MyApp extends StatelessWidget {
 		return MaterialApp(
 			title: 'Flutter Demo',
 			home: Absences(),
+			theme: CustomStyles.lightTheme,
+			darkTheme: CustomStyles.darkTheme,
 		);
 	}
 }
@@ -23,7 +26,6 @@ class Absences extends StatefulWidget {
 }
 
 class AbsencesState extends State<Absences> {
-
 	int _currentIndex = 0;
 	final List<SemesterView> semesters = [
 		SemesterView(1),
@@ -31,14 +33,10 @@ class AbsencesState extends State<Absences> {
 		SemesterView(3),
 		SemesterView(4),
 	];
-	final List<BottomNavigationBarItem> navItems = [];
 
-	AbsencesState() {
-		createNavItems();
-	}
-
-	void createNavItems() {
-		for(int i = 1; i < semesters.length + 1; i++) {
+	List<BottomNavigationBarItem> createNavItems(BuildContext context) {
+		List<BottomNavigationBarItem> navItems = [];
+		for (int i = 1; i < semesters.length + 1; i++) {
 			IconData icon;
 			if (i == 1)
 				icon = Icons.filter_1;
@@ -49,15 +47,23 @@ class AbsencesState extends State<Absences> {
 			else if (i == 4) icon = Icons.filter_4;
 
 			navItems.add(BottomNavigationBarItem(
-				icon: Icon(icon, color: Colors.black,),
-				title: Text("Semestre $i", style: TextStyle(color: Colors.black),)
-			));
+				icon: Icon(icon, color: Theme
+					.of(context)
+					.bottomAppBarColor),
+				title: Text(
+					"Semestre $i",
+					style: TextStyle(color: Theme
+						.of(context)
+						.bottomAppBarColor),
+				)));
 		}
+
+		return navItems;
 	}
 
 	void setIndex(int index) {
 		setState(() {
-		  _currentIndex = index;
+			_currentIndex = index;
 		});
 	}
 
@@ -70,12 +76,9 @@ class AbsencesState extends State<Absences> {
 				actions: <Widget>[
 					IconButton(
 						onPressed: () {
-							Navigator.push(
-								context,
+							Navigator.push(context,
 								MaterialPageRoute(
-									builder: (context) => MaterialCreate()
-								)
-							);
+									builder: (context) => MaterialCreate()));
 						},
 						icon: Icon(CupertinoIcons.add_circled),
 					)
@@ -84,9 +87,8 @@ class AbsencesState extends State<Absences> {
 			bottomNavigationBar: BottomNavigationBar(
 				currentIndex: _currentIndex,
 				onTap: setIndex,
-				items: navItems,
+				items: createNavItems(context),
 			),
 		);
 	}
-
 }

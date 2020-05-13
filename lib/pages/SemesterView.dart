@@ -1,6 +1,6 @@
-import 'package:absences/components/materials/MaterialCard.dart';
-import 'package:absences/components/text/BigTitle.dart';
+import 'package:absences/components/MaterialCard.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class SemesterView extends StatelessWidget {
 
@@ -16,11 +16,15 @@ class SemesterView extends StatelessWidget {
 			child: ListView(
 				children: <Widget>[
 					SizedBox(height: 16,),
-					BigTitle(text: "Semestre $id", size: 36, bold: true),
-					/**
-					 * MATIERES INFORMATIQUE
-					 */
-					BigTitle(text: "Matières informatique", size: 24,),
+					Text("Semestre $id", style: Theme
+						.of(context)
+						.textTheme
+						.headline1,),
+
+					Text("Matières informatique", style: Theme
+						.of(context)
+						.textTheme
+						.headline2,),
 					SizedBox(height: 8,),
 					SingleChildScrollView(
 						child: GridView.count(
@@ -39,11 +43,11 @@ class SemesterView extends StatelessWidget {
 						),
 					),
 
-					/**
-					 * MATIERES GENERALES
-					 */
 					SizedBox(height: 32,),
-					BigTitle(text: "Matières générales", size: 24,),
+					Text("Matières générales", style: Theme
+						.of(context)
+						.textTheme
+						.headline2,),
 					SizedBox(height: 8,),
 					SingleChildScrollView(
 						child: GridView.count(

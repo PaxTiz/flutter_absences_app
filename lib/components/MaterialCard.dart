@@ -1,9 +1,10 @@
-import 'package:absences/components/text/TextStyles.dart';
+import 'package:absences/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MaterialCard extends StatefulWidget {
-	createState() => MaterialCardState();
+	@override
+	MaterialCardState createState() => MaterialCardState();
 }
 
 class MaterialCardState extends State<MaterialCard> {
@@ -20,19 +21,21 @@ class MaterialCardState extends State<MaterialCard> {
 				children: <Widget>[
 					Row(
 						children: <Widget>[
-							Text("SE1", style: TextStyles.materialCardTitle,),
+							Text("SE1",
+								style: CustomStyles.materialCardsHeadline,),
 							Spacer(),
-							Text("0", style: TextStyles.materialCardText,),
+							Text("0", style: CustomStyles.materialCardsBody,),
 						],
 					),
-					SizedBox(height: 8,),
+//					SizedBox(height: 8,),
 					Row(
 						children: <Widget>[
 							Icon(CupertinoIcons.time, size: 14, color: Colors.white,),
 							SizedBox(width: 4,),
-							Text("Restantes", style: TextStyles.materialCardText,),
+							Text("Restantes",
+								style: CustomStyles.materialCardsBody,),
 							Spacer(),
-							Text("0", style: TextStyles.materialCardText,),
+							Text("0", style: CustomStyles.materialCardsBody,),
 						],
 					)
 				],
