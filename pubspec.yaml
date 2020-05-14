@@ -28,8 +28,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
 
-  # Library to import fonts from Google Fonts
-  google_fonts: ^1.1.0
+  sqflite:
+  path:
 
 dev_dependencies:
   flutter_test:

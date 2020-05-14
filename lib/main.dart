@@ -1,9 +1,10 @@
-import 'package:absences/pages/MaterialCreate.dart';
-import 'package:absences/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'pages/MaterialCreate.dart';
 import 'pages/SemesterView.dart';
+import 'styles.dart';
+
 
 void main() {
 	runApp(MyApp());
