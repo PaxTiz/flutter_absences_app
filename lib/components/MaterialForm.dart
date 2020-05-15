@@ -19,17 +19,18 @@ class MaterialFormState extends State<MaterialForm> {
 	String ueValue = "Informatique";
 
 	SemesterService semesterService = SemesterService();
-	Semester semesterValue = Semester(id: 0, name: "Semestre 0");
-	List<Semester> semestersDropdown = [];
+	Semester semesterValue;
+	List<Semester> semestersDropdown = [
+		Semester(id: 1, name: "Semestre 1"),
+		Semester(id: 2, name: "Semestre 2"),
+		Semester(id: 3, name: "Semestre 3"),
+		Semester(id: 4, name: "Semestre 4")
+	];
 
 	@override
 	void initState() {
 		super.initState();
-		semesterService.findAll().then((value) {
-			setState(() {
-				semestersDropdown = value;
-			});
-		});
+		semesterValue = semestersDropdown.first;
 	}
 
 	void sendForm() {}
@@ -45,24 +46,20 @@ class MaterialFormState extends State<MaterialForm> {
 	}
 
 	Widget dropdownItems() {
-		if (semestersDropdown.length > 0) {
-			return DropdownButton<Semester>(
-				value: semestersDropdown.first,
-				isExpanded: true,
-				items: semestersDropdown.map((e) =>
-					DropdownMenuItem<Semester>(
-						value: e,
-						child: Text(e.name),
-					)).toList(),
-				onChanged: (item) {
-					setState(() {
-						semesterValue = item;
-					});
-				},
-			);
-		}
-
-		return Text("Please add a semestre before add material");
+		return DropdownButtonFormField<Semester>(
+			value: semesterValue,
+			isExpanded: true,
+			items: semestersDropdown.map((e) =>
+				DropdownMenuItem<Semester>(
+					value: e,
+					child: Text(e.name),
+				)).toList(),
+			onChanged: (item) {
+				setState(() {
+					semesterValue = item;
+				});
+			},
+		);
 	}
 
 	@override
@@ -92,7 +89,7 @@ class MaterialFormState extends State<MaterialForm> {
 							height: 32,
 						),
 						Text("Unité d'enseignement"),
-						DropdownButton(
+						DropdownButtonFormField(
 							value: ueValue,
 							isExpanded: true,
 							items: ues
@@ -126,52 +123,6 @@ class MaterialFormState extends State<MaterialForm> {
 								style: CustomStyles.button,
 							),
 						),
-						Spacer(),
-						Row(
-							mainAxisSize: MainAxisSize.max,
-							mainAxisAlignment: MainAxisAlignment.spaceBetween,
-							children: <Widget>[
-								Container(
-									child: CupertinoButton(
-										color: Colors.blue,
-										padding: EdgeInsets.symmetric(
-											horizontal: 32, vertical: 8),
-										onPressed: () => addSemester(context),
-										child: Row(
-											mainAxisAlignment: MainAxisAlignment
-												.center,
-											children: <Widget>[
-												Icon(Icons.add),
-												Text(
-													"Nouveau",
-													style: CustomStyles.button,
-												)
-											],
-										),
-									),
-								),
-								Container(
-									child: CupertinoButton(
-										color: Colors.blue,
-										padding: EdgeInsets.symmetric(
-											horizontal: 32, vertical: 8),
-										onPressed: () =>
-											deleteSemester(context),
-										child: Row(
-											mainAxisAlignment: MainAxisAlignment
-												.center,
-											children: <Widget>[
-												Icon(Icons.add),
-												Text(
-													"Enlever",
-													style: CustomStyles.button,
-												)
-											],
-										),
-									),
-								)
-							],
-						)
 					],
 				),
 			),

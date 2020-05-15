@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'pages/MaterialCreate.dart';
 import 'pages/SemesterView.dart';
+import 'services/SemestersService.dart';
 import 'styles.dart';
-
 
 void main() {
 	runApp(MyApp());
@@ -28,15 +28,17 @@ class Absences extends StatefulWidget {
 
 class AbsencesState extends State<Absences> {
 	int _currentIndex = 0;
-	final List<SemesterView> semesters = [
+
+	SemesterService service = SemesterService();
+	final List semesters = [
 		SemesterView(1),
 		SemesterView(2),
 		SemesterView(3),
 		SemesterView(4),
 	];
 
-	List<BottomNavigationBarItem> createNavItems(BuildContext context) {
-		List<BottomNavigationBarItem> navItems = [];
+	List createNavigationBarItems(BuildContext context) {
+		List<BottomNavigationBarItem> navigationBarItems = [];
 		for (int i = 1; i < semesters.length + 1; i++) {
 			IconData icon;
 			if (i == 1)
@@ -47,7 +49,7 @@ class AbsencesState extends State<Absences> {
 				icon = Icons.filter_3;
 			else if (i == 4) icon = Icons.filter_4;
 
-			navItems.add(BottomNavigationBarItem(
+			navigationBarItems.add(BottomNavigationBarItem(
 				icon: Icon(icon, color: Theme
 					.of(context)
 					.bottomAppBarColor),
@@ -59,7 +61,7 @@ class AbsencesState extends State<Absences> {
 				)));
 		}
 
-		return navItems;
+		return navigationBarItems;
 	}
 
 	void setIndex(int index) {
@@ -88,7 +90,7 @@ class AbsencesState extends State<Absences> {
 			bottomNavigationBar: BottomNavigationBar(
 				currentIndex: _currentIndex,
 				onTap: setIndex,
-				items: createNavItems(context),
+				items: createNavigationBarItems(context),
 			),
 		);
 	}

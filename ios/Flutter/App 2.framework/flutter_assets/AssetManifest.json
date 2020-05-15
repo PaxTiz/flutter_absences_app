@@ -1,0 +1,17 @@
+{
+  "packages/cupertino_icons/assets/CupertinoIcons.ttf": [
+    "packages/cupertino_icons/assets/CupertinoIcons.ttf"
+  ],
+  "assets/fonts/montserrat/Montserrat-Bold.ttf": [
+    "assets/fonts/montserrat/Montserrat-Bold.ttf"
+  ],
+  "assets/fonts/montserrat/Montserrat-Regular.ttf": [
+    "assets/fonts/montserrat/Montserrat-Regular.ttf"
+  ],
+  "assets/fonts/open-sans/OpenSans-Bold.ttf": [
+    "assets/fonts/open-sans/OpenSans-Bold.ttf"
+  ],
+  "assets/fonts/open-sans/OpenSans-Regular.ttf": [
+    "assets/fonts/open-sans/OpenSans-Regular.ttf"
+  ]
+}
