@@ -6,12 +6,11 @@ class AbsencesDB {
 
   static Future<Database> getInstance() async {
     if (instance == null) {
-      instance = openDatabase(
-          join(await getDatabasesPath(), 'absences.db'),
+      instance = openDatabase(join(await getDatabasesPath(), 'absences.db'),
           onCreate: (db, version) {
-            db.execute(
-                "CREATE TABLE semesters(id INTEGER PRIMARY KEY, name TEXT NOT NULL)");
-            db.execute("""
+              db.execute(
+                  "CREATE TABLE semesters(id INTEGER PRIMARY KEY, name TEXT NOT NULL)");
+              db.execute("""
               CREATE TABLE materials(
                 id INTEGER PRIMARY KEY, 
                 name TEXT NOT NULL, 
@@ -21,10 +20,7 @@ class AbsencesDB {
                 semester_id INT NOT NULL
               )
             """);
-          },
-          singleInstance: true,
-          version: 1
-      );
+          }, singleInstance: true, version: 1);
     }
 
     return instance;
